@@ -34,7 +34,6 @@ M.setup = function()
 	}
 
 	vim.diagnostic.config(config)
-
 	vim.lsp.handlers["textDocument/hover"] = vim.lsp.with(vim.lsp.handlers.hover, {
 		border = "rounded",
 	})
@@ -76,8 +75,8 @@ local function lsp_keymaps(bufnr)
 	-- vim.api.nvim_buf_set_keymap(bufnr, "n", "gD", "<cmd>lua vim.lsp.buf.declaration()<CR>", opts)
 	-- 跳转到定义
 	vim.api.nvim_buf_set_keymap(bufnr, "n", "gd", "<cmd>lua vim.lsp.buf.definition()<CR>", opts)
-	vim.api.nvim_buf_set_keymap(bufnr, "n", "gD", "<cmd>lua vim.lsp.buf.declaration()<CR>", opts)
-	-- TODO
+	vim.keymap.set("n", "gD", "<cmd>Telescope lsp_type_definition<cr>", { desc = "goto type definition" })
+	-- vim.api.nvim_buf_set_keymap(bufnr, "n", "gD", "<cmd>Telescope lsp_type_definition<cr>", opts)
 	-- vim.api.nvim_buf_set_keymap(bufnr, "n", "<c-k>", "<cmd>lua vim.lsp.buf.hover()<CR>", opts)
 	-- 跳转到实现
 	vim.api.nvim_buf_set_keymap(bufnr, "n", "gi", "<cmd>lua vim.lsp.buf.implementation()<CR>", opts)
@@ -103,7 +102,7 @@ local function lsp_keymaps(bufnr)
 	-- 不知道干嘛
 	-- vim.api.nvim_buf_set_keymap(bufnr, "n", "<leader>q", "<cmd>lua vim.diagnostic.setloclist()<CR>", opts)
 	-- format 的时候执行 lsp 的 format
-	vim.cmd([[ command! Format execute 'lua vim.lsp.buf.format({async=true})' ]])
+	-- vim.cmd([[ command! Format execute 'lua vim.lsp.buf.format({async=true})' ]])
 end
 
 -- on_attach 是 lsp 启动的时候的钩子函数
@@ -114,7 +113,7 @@ M.on_attach = function(client, bufnr)
 	if client.name == "volar" then
 		client.server_capabilities.documentFormattingProvider = false
 	end
-	lsp_keymaps(bufnr)
+	-- lsp_keymaps(bufnr)
 	lsp_highlight_document(client)
 end
 

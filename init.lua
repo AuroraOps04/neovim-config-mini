@@ -1,26 +1,25 @@
-require "core.options"
-require "core.keymaps"
-require "plugin"
-require "plugin.nvimtree"
-require "plugin.colorscheme"
-require "plugin.whichkey"
-require "plugin.leap"
-require "plugin.lualine"
-require "plugin.telescope"
-require "plugin.terminal"
-require "plugin.comment"
-require "plugin.autopair"
-require "plugin.treesitter"
-require "plugin.lsp"
-require "plugin.cmp"
-require "plugin.project"
-require "plugin.alpha"
-require "plugin.gitsigns"
-require "plugin.indent"
-require "plugin.autocmd"
-require "plugin.bufferline"
-require "plugin.noice"
-require "plugin.ufo"
-
+require("core.options")
+require("core.keymaps")
+require("plugin")
+require("plugin.noice")
+require("plugin.lsp")
+require("plugin.treesitter")
+require("plugin.nvimtree")
+require("plugin.colorscheme")
+require("plugin.whichkey")
+require("plugin.leap")
+require("plugin.lualine")
+require("plugin.telescope")
+require("plugin.terminal")
+require("plugin.comment")
+require("plugin.autopair")
+require("plugin.cmp")
+require("plugin.project")
+require("plugin.alpha")
+require("plugin.gitsigns")
+require("plugin.indent")
+require("plugin.autocmd")
+require("plugin.bufferline")
+require("plugin.ufo")
 vim.opt.rtp:prepend("~/Repo/neovim-temp-file")
 require("neovim-temp-file")

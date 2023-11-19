@@ -76,9 +76,6 @@ local opts = {
   noremap = true, -- use `noremap` when creating keymaps
   nowait = true, -- use `nowait` when creating keymaps
 }
-local function Format()
-  vim.lsp.buf.format()
-end
 
 local mappings = {
   a = { "gg<S-v>G", "Select all" },
@@ -119,8 +116,6 @@ local mappings = {
   -- LSP
   l = {
     name = "LSP",
-    -- f = { "<cmd>Format<cr>", "Format" },
-    f = { Format, "Format" },
     i = { "<cmd>lua vim.lsp.buf.hover()<cr>", "Lsp Tips" },
     a = { "<cmd>lua vim.lsp.buf.code_action()<cr>", "Lsp Code Action" },
     r = { "<cmd>lua vim.lsp.buf.rename()<cr>", "Lsp rename" },
@@ -134,7 +129,6 @@ local mappings = {
     s = { "<cdm>DapStop<cr>", "Dap stop" },
   },
 }
-
 which_key.setup(setup)
 -- start with <leader>
 which_key.register(mappings, opts)

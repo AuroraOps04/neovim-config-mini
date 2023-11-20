@@ -125,6 +125,7 @@ local mappings = {
   d = {
     name = "Debugger",
     d = { "<cmd>DapUiToggle<cr>", "Dap ui toggle" },
+    c = { "<cmd>DapContinue<cr>", "Dap Start" },
     r = { "<cmd>DapRerun<cr>", "Dap run or rerun" },
     s = { "<cdm>DapStop<cr>", "Dap stop" },
   },
@@ -142,6 +143,10 @@ which_key.register({
     r = { "<cmd>Telescope lsp_references<cr>", "Go to references" },
     e = { "<cmd>lua vim.diagnostic.goto_next()<cr>", "Go to next diagnostic" },
   },
+
+  ["<F6>"] = { "<cmd>DapStepOver<cr>", "Dap step out" },
+  ["<F7>"] = { "<cmd>DapStepOver<cr>", "Dap step over" },
+  ["<F8>"] = { "<cmd>DapStepInto<cr>", "Dap step into" },
 }, {
   nowait = true,
   noremap = true,

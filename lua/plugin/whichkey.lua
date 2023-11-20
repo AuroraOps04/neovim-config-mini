@@ -154,12 +154,18 @@ which_key.register({
 		D = { "<cmd>Telescope lsp_type_definitions <cr>", "Go to type definition" },
 		i = { "<cmd>Telescope lsp_implementations<cr>", "Go to implemention" },
 		r = { "<cmd>Telescope lsp_references<cr>", "Go to references" },
-		e = { "<cmd>lua vim.diagnostic.goto_next()<cr>", "Go to next diagnostic" },
+		j = { "<cmd>lua vim.diagnostic.goto_next()<cr>", "Go to next diagnostic" },
+		k = { "<cmd>lua vim.diagnostic.goto_prev()<cr>", "Go to prev diagnostic" },
 	},
-
-	["<F6>"] = { "<cmd>DapStepOver<cr>", "Dap step out" },
-	["<F7>"] = { "<cmd>DapStepOver<cr>", "Dap step over" },
-	["<F8>"] = { "<cmd>DapStepInto<cr>", "Dap step into" },
+	c = {
+		name = "Change",
+		-- NOTE: don't use a i!
+		e = { require("substitute").operator, "Exchange motion from register" },
+		l = { require("substitute").line, "Exchange line from register " },
+	},
+	["<F6>"] = { "<cmd>DapStepOver<cr>", "Dap step over" },
+	["<F7>"] = { "<cmd>DapStepInto<cr>", "Dap step into" },
+	["<F8>"] = { "<cmd>DapStepOut<cr>", "Dap step out" },
 }, {
 	nowait = true,
 	noremap = true,

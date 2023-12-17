@@ -124,14 +124,22 @@ local mappings = {
     e = { "<cmd>Telescope diagnostics<cr>", "Show diagnostic" },
   },
   -- DAP
-  b = { "<cmd>DapToggleBreakpoint<cr>", "Toggle breakpoint" },
   d = {
     name = "Debugger",
+    b = { "<cmd>DapToggleBreakpoint<cr>", "Toggle breakpoint" },
     d = { "<cmd>DapUiToggle<cr>", "Dap ui toggle" },
     c = { "<cmd>DapContinue<cr>", "Dap Start" },
     r = { "<cmd>DapRerun<cr>", "Dap run or rerun" },
     s = { "<cdm>DapStop<cr>", "Dap stop" },
     i = { "<cmd>DapShowLog<cr>", "Dap log" },
+  },
+  -- Buffers
+  b = {
+    name = "Buffers",
+    b = { "<cmd>Telescope buffers<cr> ", "Show Buffers" },
+    r = { "<cmd>BufferLineCloseRight<cr>", "Close right buffers" },
+    l = { "<cmd>BufferLineCloseLeft<cr>", "Close left buffers" },
+    -- o = { "<cmd>BufferLineCloseOther<cr>", "Close other buffers" },
   },
   -- Git
   g = {
@@ -143,6 +151,10 @@ local mappings = {
     j = { "<cmd>Gitsigns next_hunk<cr>", "Git next hunk" },
     k = { "<cmd>Gitsigns prev_hunk<cr>", "Git prev hunk" },
     p = { "<cmd>Gitsigns preview_hunk<cr>", "Git hunk preview" },
+  },
+  T = {
+    name = "Terminal",
+    g = { "<cmd>lua _LAZYGIT_TOGGLE()<cr>", "Lazygit terminal" },
   },
 }
 which_key.setup(setup)

@@ -28,9 +28,7 @@ local servers = {
 	-- "volar",
 	"tsserver",
 	"gopls",
-	"ccls",
-	-- "cssls",
-	-- "bashls"
+	"clangd",
 }
 mason_lspconfig.setup({
 	ensure_installed = {},

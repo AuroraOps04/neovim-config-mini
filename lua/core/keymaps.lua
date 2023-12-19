@@ -1,19 +1,17 @@
 local keymap = vim.api.nvim_set_keymap
 
-local opts = {noremap = true, silent = true}
-local term_opts = {silent = true}
+local opts = { noremap = true, silent = true }
+local term_opts = { silent = true }
 
 keymap("", "<Space>", "<Nop>", opts)
-vim.g.mapleader=" "
-vim.g.maplocalleader=" "
+vim.g.mapleader = " "
+vim.g.maplocalleader = " "
 
 -- window jump
-keymap('n', '<C-j>', '<C-w><C-j>', opts)
-keymap('n', '<C-k>', '<C-w><C-k>', opts)
-keymap('n', '<C-l>', '<C-w><C-l>', opts)
-keymap('n', '<C-h>', '<C-w><C-h>', opts)
-
-
+keymap("n", "<C-j>", "<C-w><C-j>", opts)
+keymap("n", "<C-k>", "<C-w><C-k>", opts)
+keymap("n", "<C-l>", "<C-w><C-l>", opts)
+keymap("n", "<C-h>", "<C-w><C-h>", opts)
 
 -- Resize with arrows
 keymap("n", "<C-Up>", ":resize +2<CR>", opts)
@@ -52,6 +50,3 @@ keymap("t", "<C-h>", "<C-\\><C-N><C-w>h", term_opts)
 keymap("t", "<C-j>", "<C-\\><C-N><C-w>j", term_opts)
 keymap("t", "<C-k>", "<C-\\><C-N><C-w>k", term_opts)
 keymap("t", "<C-l>", "<C-\\><C-N><C-w>l", term_opts)
-
-
-

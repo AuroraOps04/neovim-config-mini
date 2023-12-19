@@ -12,31 +12,70 @@ end
 vim.opt.rtp:prepend(lazypath)
 require("lazy").setup({
 	-- Dependencies
-	"nvim-lua/plenary.nvim",
-	-- UI
-	-- Color Scheme
-	"neanias/everforest-nvim",
 	{
 
-		"ellisonleao/gruvbox.nvim",
-		priority = 1000,
-		config = true,
+		"nvim-lua/plenary.nvim",
+		event = "VeryLazy",
 	},
-	"nvim-lualine/lualine.nvim",
+	-- UI
+	-- Color Scheme
+	{
+		"neanias/everforest-nvim",
+		config = function()
+			require("plugin.colorschema")
+		end,
+		event = "UIEnter",
+	},
+	-- {
+	--
+	--   "ellisonleao/gruvbox.nvim",
+	--   priority = 1000,
+	--   config = true,
+	--   event = "UIEnter",
+	--   lazy = true,
+	-- },
+	{
+		"nvim-lualine/lualine.nvim",
+		event = "UIEnter",
+		config = function()
+			require("plugin.lualine")
+		end,
+	},
 	{
 		"akinsho/bufferline.nvim",
 		version = "*",
+		event = "UIEnter",
+		lazy = true,
+		config = function()
+			require("plugin.bufferline")
+		end,
 	},
 	{
 		"norcalli/nvim-colorizer.lua",
 		config = function()
 			require("colorizer").setup()
 		end,
+		event = "UIEnter",
 	},
 	-- Which Key
-	"folke/which-key.nvim",
+	{
+
+		"folke/which-key.nvim",
+		event = "VeryLazy",
+		cmd = "WhichKey",
+		config = function()
+			require("plugin.whichkey")
+		end,
+	},
 	-- Jump
-	"ggandor/leap.nvim",
+	{
+
+		"ggandor/leap.nvim",
+		event = "UIEnter",
+		config = function()
+			require("plugin.leap")
+		end,
+	},
 	-- NvimTree
 	{
 		"nvim-tree/nvim-tree.lua",
@@ -44,22 +83,57 @@ require("lazy").setup({
 		dependencies = {
 			"nvim-tree/nvim-web-devicons",
 		},
+		config = function()
+			require("plugin.nvimtree")
+		end,
 	},
 	-- Telesocpe
-	"nvim-telescope/telescope.nvim",
+	{
 
-	"numToStr/Comment.nvim",
-	"akinsho/toggleterm.nvim",
-	"windwp/nvim-autopairs",
+		"nvim-telescope/telescope.nvim",
+		event = "VeryLazy",
+		config = function()
+			require("plugin.telescope")
+		end,
+	},
+	{
+		"numToStr/Comment.nvim",
+		event = "UIEnter",
+		config = function()
+			require("plugin.comment")
+		end,
+	},
+	{
+
+		"akinsho/toggleterm.nvim",
+		config = function()
+			require("plugin.terminal")
+		end,
+		event = "CmdlineEnter",
+	},
+	{
+
+		"windwp/nvim-autopairs",
+		event = "UIEnter",
+		config = function()
+			require("plugin.autopair")
+		end,
+	},
 
 	-- Treesitter
 	{
 		"nvim-treesitter/nvim-treesitter",
+		config = function()
+			require("plugin.treesitter")
+		end,
+		event = "UIEnter",
 		lazy = true,
 	},
 	{
 
 		"p00f/nvim-ts-rainbow",
+		event = "UIEnter",
+		lazy = true,
 		config = function()
 			-- require("ts-rainbow").setup()
 		end,
@@ -78,20 +152,31 @@ require("lazy").setup({
 		ft = { "go", "gomod" },
 		build = ':lua require("go.install").update_all_sync()', -- if you need to install/update all binaries
 	},
+	{
 
-	"neovim/nvim-lspconfig",
+		"neovim/nvim-lspconfig",
+		event = "VimEnter",
+	},
 	{
 		"williamboman/mason.nvim",
-		--cmd = "Mason",
+		cmd = "Mason",
+		lazy = true,
 	},
 	{
 		"williamboman/mason-lspconfig.nvim",
 	},
-	"jose-elias-alvarez/null-ls.nvim",
+	{
+
+		"jose-elias-alvarez/null-ls.nvim",
+	},
 	{
 		"hrsh7th/nvim-cmp",
+		lazy = true,
+		event = "CmdlineEnter",
+		config = function()
+			require("plugin.cmp")
+		end,
 		dependencies = {
-
 			"hrsh7th/cmp-buffer",
 			-- buffer completions
 			"hrsh7th/cmp-path", -- path completions
@@ -100,6 +185,8 @@ require("lazy").setup({
 			"hrsh7th/cmp-nvim-lsp",
 			{
 				"saadparwaiz1/cmp_luasnip", -- snippet completions
+				lazy = true,
+				event = { "InsertEnter" },
 				dependencies = {
 					"L3MON4D3/LuaSnip",
 					"L3MON4D3/LuaSnip",
@@ -107,63 +194,111 @@ require("lazy").setup({
 			},
 		},
 	},
-	"ahmedkhalf/project.nvim",
+	{
+		"ahmedkhalf/project.nvim",
+		event = "UIEnter",
+		config = function()
+			require("plugin.project")
+		end,
+	},
 	{
 		"goolord/alpha-nvim",
 		cmd = "Alpha",
+		event = "VimEnter",
+		config = function()
+			require("plugin.alpha")
+		end,
 	},
-	"lewis6991/gitsigns.nvim",
+	{
+
+		"lewis6991/gitsigns.nvim",
+		event = "UIEnter",
+		config = function()
+			require("plugin.gitsigns")
+		end,
+	},
 	{
 		"folke/todo-comments.nvim",
 		dependencies = { "nvim-lua/plenary.nvim" },
-		opts = {
-			-- your configuration comes here
-			-- or leave it empty to use the default settings
-			-- refer to the configuration section below
-		},
+		config = function()
+			require("plugin.todo")
+		end,
+		event = "UIEnter",
 	},
 	{
 		"nvim-treesitter/nvim-treesitter-textobjects",
+		lazy = true,
+		event = "UIEnter",
 		dependencies = {
 			"nvim-treesitter/nvim-treesitter",
 		},
 	},
 	{
 		"gbprod/substitute.nvim",
-		opts = {
-			-- your configuration comes here
-			-- or leave it empty to use the default settings
-			-- refer to the configuration section below
-		},
+		config = function()
+			-- require("plugin.")
+		end,
+		event = "UIEnter",
 	},
 	{
 		"kylechui/nvim-surround",
 		config = function()
 			require("nvim-surround").setup()
 		end,
+		event = "UIEnter",
 	},
-	"voldikss/vim-translator",
-	"lukas-reineke/indent-blankline.nvim",
+	{
+
+		"voldikss/vim-translator",
+		config = function()
+			require("plugin.translator")
+		end,
+		event = "UIEnter",
+	},
+	{
+		"lukas-reineke/indent-blankline.nvim",
+		main = "ibl",
+		opts = {},
+		lazy = true,
+		event = "UIEnter",
+		config = function()
+			require("plugin.indent")
+		end,
+	},
 	{
 
 		"ahmedkhalf/project.nvim",
 		config = function()
 			require("project_nvim").setup()
 		end,
+		event = "VimEnter",
 	},
 
 	-- DAP Configuration
-	"mfussenegger/nvim-dap",
+	{
+
+		"mfussenegger/nvim-dap",
+		cmd = { "DapContinue", "DapUiToggle" },
+		config = function()
+			require("plugin.dap")
+		end,
+	},
 	{
 		-- use this can be without configuration for go dap
 		"leoluz/nvim-dap-go",
 		config = function()
 			require("dap-go").setup()
 		end,
+		cmd = "DapContinue",
 	},
 	{
 
 		"rcarriga/nvim-dap-ui",
+		event = "UIEnter",
+		config = function()
+			require("dapui").setup()
+		end,
+		-- cmd = "DapUiToggle",
 	},
 
 	{
@@ -172,16 +307,27 @@ require("lazy").setup({
 		config = function()
 			require("nvim-dap-virtual-text").setup()
 		end,
+		cmd = "DapContinue",
 	},
-
+	-- dap  for python
+	{
+		"mfussenegger/nvim-dap-python",
+		config = function()
+			-- FIXME: config for linux
+			require("dap-python").setup("~/.virtualenvs/debugpy/Scripts/python.exe")
+		end,
+		-- cmd = { "DapUiToggle", "DapContinue" },
+		event = "UIEnter",
+	},
 	-- DAP Configuration End
 
 	{
 		"folke/noice.nvim",
 		event = "VeryLazy",
-		opts = {
-			-- add any options here
-		},
+		lazy = true,
+		config = function()
+			require("plugin.noice")
+		end,
 		dependencies = {
 			-- if you lazy-load any plugin below, make sure to add proper `module="..."` entries
 			"MunifTanjim/nui.nvim",
@@ -194,9 +340,17 @@ require("lazy").setup({
 	{
 		"mg979/vim-visual-multi",
 		branch = "master",
+		event = "UIEnter",
 	},
 
-	{ "kevinhwang91/nvim-ufo", dependencies = "kevinhwang91/promise-async" },
+	{
+		"kevinhwang91/nvim-ufo",
+		event = "UIEnter",
+		config = function()
+			require("plugin.ufo")
+		end,
+		dependencies = "kevinhwang91/promise-async",
+	},
 
 	{
 		"nvim-treesitter/playground",
@@ -223,5 +377,21 @@ require("lazy").setup({
 			})
 		end,
 		cmd = "TSPlaygroundToggle",
+	},
+	{
+		"utilyre/barbecue.nvim",
+		name = "barbecue",
+		version = "*",
+		dependencies = {
+			"SmiteshP/nvim-navic",
+			"nvim-tree/nvim-web-devicons", -- optional dependency
+		},
+		opts = {
+			-- configurations go here
+		},
+		event = "UIEnter",
+	},
+	{
+		"LunarVim/bigfile.nvim",
 	},
 })

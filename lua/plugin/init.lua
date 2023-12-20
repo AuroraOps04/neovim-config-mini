@@ -26,14 +26,6 @@ require("lazy").setup({
 		end,
 		event = "UIEnter",
 	},
-	-- {
-	--
-	--   "ellisonleao/gruvbox.nvim",
-	--   priority = 1000,
-	--   config = true,
-	--   event = "UIEnter",
-	--   lazy = true,
-	-- },
 	{
 		"nvim-lualine/lualine.nvim",
 		event = "UIEnter",
@@ -45,7 +37,6 @@ require("lazy").setup({
 		"akinsho/bufferline.nvim",
 		version = "*",
 		event = "UIEnter",
-		lazy = true,
 		config = function()
 			require("plugin.bufferline")
 		end,
@@ -180,16 +171,26 @@ require("lazy").setup({
 			"hrsh7th/cmp-buffer",
 			-- buffer completions
 			"hrsh7th/cmp-path", -- path completions
+			"hrsh7th/cmp-emoji", -- path completions
 			"hrsh7th/cmp-cmdline", -- cmdline completions
 			"hrsh7th/cmp-nvim-lua",
 			"hrsh7th/cmp-nvim-lsp",
 			{
 				"saadparwaiz1/cmp_luasnip", -- snippet completions
-				lazy = true,
-				event = { "InsertEnter" },
+				-- lazy = true,
+				-- event = { "InsertEnter" },
 				dependencies = {
-					"L3MON4D3/LuaSnip",
-					"L3MON4D3/LuaSnip",
+					{
+						"L3MON4D3/LuaSnip",
+						version = "v2.*",
+						build = "make install_jsregexp",
+						dependencies = {
+							"rafamadriz/friendly-snippets",
+						},
+						config = function()
+							require("luasnip.loaders.from_vscode").lazy_load()
+						end,
+					},
 				},
 			},
 		},
@@ -258,8 +259,7 @@ require("lazy").setup({
 	{
 		"lukas-reineke/indent-blankline.nvim",
 		main = "ibl",
-		opts = {},
-		lazy = true,
+		-- lazy = true,
 		event = "UIEnter",
 		config = function()
 			require("plugin.indent")

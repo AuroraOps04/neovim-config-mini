@@ -78,11 +78,11 @@ local opts = {
 }
 
 local mappings = {
-  a = { "gg<S-v>G", "Select all" },
+  a = { "ggVG", "Select all" },
   A = { "<cmd>Alpha<cr>", "Alpha" },
   ["e"] = { "<cmd>NvimTreeToggle<cr>", "Explorer" },
   -- ["w"] = { "<cmd>w!<CR>", "Save" },
-  ["q"] = { "<cmd>wq!<CR>", "Quit" },
+  ["q"] = { "<cmd>wq!<CR>", "Save and quit" },
   ["h"] = { "<cmd>nohlsearch<CR>", "No Highlight" },
   s = { "<cmd>write <CR>", "Save and formt current buffer" },
   P = { "<cmd>Telescope projects<cr>", "Find projects" },
@@ -145,6 +145,7 @@ local mappings = {
   -- Git
   g = {
     name = "Git",
+    t = { "<cmd>lua _LAZYGIT_TOGGLE()<cr>", "Git Terminal" },
     s = { "<cmd>Telescope git_status<cr>", "Git Status" },
     b = { "<cmd>Telescope git_branches<cr>", "Git branchs" },
     c = { "<cmd>Telescope git_commits<cr>", "Git commits" },

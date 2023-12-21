@@ -58,7 +58,7 @@ for _, server in pairs(servers) do
 
 	lspconfig[server].setup(opts)
 end
-lspconfig.gopls.setup({
-	on_attach = require("plugin.lsp.handlers").on_attach,
-	capabilities = require("plugin.lsp.handlers").capabilities,
-})
+-- lspconfig.gopls.setup({
+-- 	on_attach = require("plugin.lsp.handlers").on_attach,
+-- 	capabilities = require("plugin.lsp.handlers").capabilities,
+-- })

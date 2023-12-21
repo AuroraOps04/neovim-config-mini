@@ -24,7 +24,7 @@ require("lazy").setup({
 		config = function()
 			require("plugin.colorschema")
 		end,
-		event = "UIEnter",
+		event = "VimEnter",
 	},
 	{
 		"nvim-lualine/lualine.nvim",
@@ -197,10 +197,11 @@ require("lazy").setup({
 	},
 	{
 		"ahmedkhalf/project.nvim",
-		event = "UIEnter",
+		event = "VimEnter",
 		config = function()
 			require("plugin.project")
 		end,
+		-- cmd = "Telescope projects",
 	},
 	{
 		"goolord/alpha-nvim",

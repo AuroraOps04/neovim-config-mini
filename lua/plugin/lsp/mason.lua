@@ -24,7 +24,8 @@ mason.setup({
 local servers = {
 	"lua_ls",
 	"pyright",
-	-- "jsonls",
+	"jsonls",
+	"cmake",
 	-- "volar",
 	"tsserver",
 	"gopls",
@@ -32,9 +33,8 @@ local servers = {
 }
 mason_lspconfig.setup({
 	ensure_installed = {},
-	automatic_installation = true,
+	automatic_installation = false,
 })
-
 local lspconfig_status_ok, lspconfig = pcall(require, "lspconfig")
 if not lspconfig_status_ok then
 	return

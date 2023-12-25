@@ -147,6 +147,9 @@ require("lazy").setup({
 
 		"neovim/nvim-lspconfig",
 		event = "VimEnter",
+		config = function()
+			require("plugin.lsp")
+		end,
 	},
 	{
 		"williamboman/mason.nvim",

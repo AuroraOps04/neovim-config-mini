@@ -6,11 +6,12 @@ opt.fileencoding = "utf-8"
 opt.hlsearch = true
 opt.showtabline = 2
 opt.smartcase = true
+-- opt.ignorecase = true
 opt.smartindent = true
 opt.swapfile = false
 opt.termguicolors = true
 -- 等待一个键映射的时间 单位 ms
-opt.timeoutlen = 1000
+opt.timeoutlen = 200
 opt.undofile = true
 -- 更快的完成速度
 opt.updatetime = 300
@@ -26,5 +27,7 @@ opt.numberwidth = 4
 opt.signcolumn = "yes"
 opt.scrolloff = 5
 opt.sidescrolloff = 5
+opt.spell = true
+opt.showmode = false
 
-vim.cmd("highlight Normal guibg=NONE ctermbg=None")
+-- vim.cmd("highlight Normal guibg=NONE ctermbg=None")

@@ -57,6 +57,27 @@ local progress = function()
 	local index = math.ceil(line_ratio * #chars)
 	return chars[index]
 end
+local lsp = {
+	function()
+		local buf_clients = vim.lsp.get_active_clients({ bufnr = 0 })
+		if #buf_clients == 0 then
+			return "LSP Inactive"
+		end
+		local buf_ft = vim.bo.filetype
+		local buf_client_names = {}
+		-- add client
+		for _, client in pairs(buf_clients) do
+			if client.name ~= "null-ls" and client.name ~= "copilot" then
+				table.insert(buf_client_names, client.name)
+			end
+		end
+		local unique_client_names = table.concat(buf_client_names, ", ")
+		local language_servers = string.format("[%s]", unique_client_names)
+		return language_servers
+	end,
+	color = { gui = "bold" },
+	cond = hide_in_width,
+}
 
 local spaces = function()
 	return "spaces: " .. vim.api.nvim_buf_get_option(0, "shiftwidth")
@@ -76,7 +97,7 @@ lualine.setup({
 		lualine_b = { mode },
 		lualine_c = {},
 		-- lualine_x = { "encoding", "fileformat", "filetype" },
-		lualine_x = { diff, spaces, "encoding", filetype },
+		lualine_x = { diff, spaces, "encoding", lsp, filetype },
 		lualine_y = { location },
 		lualine_z = { progress },
 	},

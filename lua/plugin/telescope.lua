@@ -5,17 +5,18 @@ end
 
 local media_files_ok, _ = pcall(require, "media_files")
 if media_files_ok then
-  telescope.load_extension('media_files')
+  telescope.load_extension("media_files")
 end
 
-local actions = require "telescope.actions"
+local actions = require("telescope.actions")
 
-telescope.setup {
+telescope.setup({
   defaults = {
 
     prompt_prefix = " ",
     selection_caret = " ",
-    path_display = { "truncate" },
+    -- path_display = { "truncate" },
+    path_display = { "smart" },
 
     mappings = {
       i = {
@@ -96,12 +97,12 @@ telescope.setup {
       -- filetypes whitelist
       -- defaults to {"png", "jpg", "mp4", "webm", "pdf"}
       filetypes = { "png", "webp", "jpg", "jpeg" },
-      find_cmd = "rg" -- find command (defaults to `fd`)
-    }
+      find_cmd = "rg", -- find command (defaults to `fd`)
+    },
     -- Your extension configuration goes here:
     -- extension_name = {
     --   extension_config_key = value,
     -- }
     -- please take a look at the readme of the extension you want to configure
   },
-}
+})

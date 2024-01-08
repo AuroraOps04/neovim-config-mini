@@ -6,7 +6,7 @@ local opts = {
 	nowait = true,
 	noremap = true,
 }
-vim.keymap.set("n", "<leader>t", "<cmd>Translate<cr>", opts)
-vim.keymap.set("v", "<leader>t", "<cmd>Translate<cr>", opts)
-vim.keymap.set("n", "<leader>tr", "<cmd>TranslateR<cr>", opts)
-vim.keymap.set("v", "<leader>tr", "<cmd>TranslateR<cr>", opts)
+vim.keymap.set("n", "<leader>tr", "<cmd>Translate<cr>", opts)
+vim.keymap.set("v", "<leader>tr", "<cmd>Translate<cr>", opts)
+-- vim.keymap.set("n", "<leader>tr", "<cmd>TranslateR<cr>", opts)
+-- vim.keymap.set("v", "<leader>tr", "<cmd>TranslateR<cr>", opts)

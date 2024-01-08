@@ -17,14 +17,60 @@ require("lazy").setup({
 		"nvim-lua/plenary.nvim",
 		event = "VeryLazy",
 	},
+	{
+		"mfussenegger/nvim-jdtls",
+		lazy = true,
+	},
 	-- UI
 	-- Color Scheme
 	{
-		"neanias/everforest-nvim",
+		"folke/tokyonight.nvim",
+	},
+	{
+		"EdEnEast/nightfox.nvim",
 		config = function()
-			require("plugin.colorschema")
+			require("nightfox").setup({
+				options = {
+					transparent = true,
+				},
+			})
+			vim.cmd([[ colorscheme nordfox ]])
 		end,
+	},
+	{
+		"rose-pine/neovim",
+		name = "rose-pine",
+		-- config = function()
+		-- 	vim.cmd([[ colorscheme rose-pine ]])
+		-- end,
+	},
+	{
+		"craftzdog/solarized-osaka.nvim",
+		lazy = false,
+		priority = 1000,
+		opts = {},
+		-- config = function()
+		-- 	vim.cmd([[ colorscheme solarized-osaka ]])
+		-- end,
+	},
+	{
+		"catppuccin/nvim",
+		name = "catppuccin",
+		priority = 1000,
 		event = "VimEnter",
+		-- config = function()
+		--   vim.cmd(
+		--     [[colorscheme catppuccin-mocha " catppuccin-latte, catppuccin-frappe, catppuccin-macchiato, catppuccin-mocha]]
+		--   )
+		-- end,
+	},
+	{
+		"neanias/everforest-nvim",
+		-- lazy = true,
+		-- config = function()
+		-- 	require("plugin.colorschema")
+		-- end,
+		-- event = "VimEnter",
 	},
 	{
 		"nvim-lualine/lualine.nvim",
@@ -100,15 +146,27 @@ require("lazy").setup({
 		config = function()
 			require("plugin.terminal")
 		end,
-		event = "CmdlineEnter",
+
+		-- cmd = {
+		-- 	"ToggleTerm",
+		-- 	"TermExec",
+		-- 	"ToggleTermToggleAll",
+		-- 	"ToggleTermSendCurrentLine",
+		-- 	"ToggleTermSendVisualLines",
+		-- 	"ToggleTermSendVisualSelection",
+		-- },
+		-- event = "CmdlineEnter",
 	},
 	{
 
 		"windwp/nvim-autopairs",
-		event = "UIEnter",
+		event = "InsertEnter",
 		config = function()
 			require("plugin.autopair")
 		end,
+	},
+	{
+		"windwp/nvim-ts-autotag",
 	},
 
 	-- Treesitter
@@ -117,17 +175,8 @@ require("lazy").setup({
 		config = function()
 			require("plugin.treesitter")
 		end,
-		event = "UIEnter",
-		lazy = true,
-	},
-	{
-
-		"p00f/nvim-ts-rainbow",
-		event = "UIEnter",
-		lazy = true,
-		config = function()
-			-- require("ts-rainbow").setup()
-		end,
+		-- event = "VimEnter",
+		-- lazy = true,
 	},
 	{
 		"ray-x/go.nvim",
@@ -166,7 +215,7 @@ require("lazy").setup({
 	{
 		"hrsh7th/nvim-cmp",
 		lazy = true,
-		event = "CmdlineEnter",
+		event = "InsertEnter",
 		config = function()
 			require("plugin.cmp")
 		end,
@@ -243,7 +292,7 @@ require("lazy").setup({
 		config = function()
 			-- require("plugin.")
 		end,
-		event = "UIEnter",
+		-- event = "UIEnter",
 	},
 	{
 		"kylechui/nvim-surround",
@@ -263,8 +312,8 @@ require("lazy").setup({
 	{
 		"lukas-reineke/indent-blankline.nvim",
 		main = "ibl",
-		-- lazy = true,
-		event = "UIEnter",
+		lazy = true,
+		-- event = "UIEnter",
 		config = function()
 			require("plugin.indent")
 		end,
@@ -275,7 +324,7 @@ require("lazy").setup({
 		config = function()
 			require("project_nvim").setup()
 		end,
-		event = "VimEnter",
+		-- event = "VimEnter",
 	},
 
 	-- DAP Configuration
@@ -328,7 +377,7 @@ require("lazy").setup({
 	{
 		"folke/noice.nvim",
 		event = "VeryLazy",
-		lazy = true,
+		-- lazy = true,
 		config = function()
 			require("plugin.noice")
 		end,
@@ -382,20 +431,52 @@ require("lazy").setup({
 		end,
 		cmd = "TSPlaygroundToggle",
 	},
-	{
-		"utilyre/barbecue.nvim",
-		name = "barbecue",
-		version = "*",
-		dependencies = {
-			"SmiteshP/nvim-navic",
-			"nvim-tree/nvim-web-devicons", -- optional dependency
-		},
-		opts = {
-			-- configurations go here
-		},
-		event = "UIEnter",
-	},
+	-- {
+	--   "utilyre/barbecue.nvim",
+	--   name = "barbecue",
+	--   version = "*",
+	--   dependencies = {
+	--     "SmiteshP/nvim-navic",
+	--     "nvim-tree/nvim-web-devicons", -- optional dependency
+	--   },
+	--   opts = {
+	--     -- configurations go here
+	--   },
+	--   event = "UIEnter",
+	-- },
 	{
 		"LunarVim/bigfile.nvim",
+	},
+	{
+		"kawre/leetcode.nvim",
+		build = ":TSUpdate html",
+		-- config = function()
+		-- 	require("leetcode").setup({
+		-- 		cn = {
+		-- 			enable = true,
+		-- 		},
+		-- 	})
+		-- end,
+		opts = {
+			lang = "golang",
+			cn = {
+				enabled = true,
+			},
+		},
+		-- opts = {
+		-- 	-- lang = "golang",
+		-- 	cn = {
+		-- 		enable = true,
+		-- 		translator = true, ---@type boolean
+		-- 		translate_problems = true, ---@type boolean
+		-- 	},
+		-- 	-- configuration goes here
+		-- },
+	},
+	{
+		"h-hg/fcitx.nvim",
+	},
+	{
+		"folke/neodev.nvim",
 	},
 })

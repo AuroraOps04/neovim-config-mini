@@ -41,6 +41,11 @@ if not lspconfig_status_ok then
 end
 
 local opts = {}
+-- neodev
+local status_ok, neodev = pcall(require, "neodev")
+if status_ok then
+	neodev.setup({})
+end
 
 -- 配置 各个 lsp
 for _, server in pairs(servers) do

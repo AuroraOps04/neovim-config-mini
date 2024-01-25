@@ -34,7 +34,7 @@ require("lazy").setup({
 					transparent = true,
 				},
 			})
-			vim.cmd([[ colorscheme nordfox ]])
+			-- vim.cmd([[ colorscheme everforest ]])
 		end,
 	},
 	{
@@ -128,6 +128,7 @@ require("lazy").setup({
 	{
 
 		"nvim-telescope/telescope.nvim",
+		tag = "0.1.5",
 		event = "VeryLazy",
 		config = function()
 			require("plugin.telescope")
@@ -188,8 +189,9 @@ require("lazy").setup({
 		config = function()
 			require("go").setup()
 		end,
-		event = { "CmdlineEnter" },
-		ft = { "go", "gomod" },
+		lazy = true,
+		-- event = { "CmdlineEnter" },
+		-- ft = { "go", "gomod" },
 		build = ':lua require("go.install").update_all_sync()', -- if you need to install/update all binaries
 	},
 	{
@@ -387,7 +389,7 @@ require("lazy").setup({
 			-- OPTIONAL:
 			--   `nvim-notify` is only needed, if you want to use the notification view.
 			--   If not available, we use `mini` as the fallback
-			"rcarriga/nvim-notify",
+			-- "rcarriga/nvim-notify",
 		},
 	},
 	{

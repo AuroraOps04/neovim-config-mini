@@ -42,7 +42,8 @@ null_ls.setup({
   },
   -- this config is not work
   should_attach = function(bufnr)
-    return not vim.api.nvim_buf_get_name(bufnr):match("dwm")
+    local path = vim.api.nvim_buf_get_name(bufnr)
+    return not path:match("dwm") and not path:match("leetcode")
   end,
   -- format on autosave
   on_attach = function(client, bufnr)

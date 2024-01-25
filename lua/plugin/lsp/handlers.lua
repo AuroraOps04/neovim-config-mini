@@ -108,6 +108,7 @@ end
 
 -- on_attach 是 lsp 启动的时候的钩子函数
 M.on_attach = function(client, bufnr)
+	vim.notify(client.name)
 	if client.name == "tsserver" then
 		client.server_capabilities.documentFormattingProvider = false
 	end

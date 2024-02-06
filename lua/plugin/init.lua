@@ -25,28 +25,31 @@ require("lazy").setup({
 	-- Color Scheme
 	{
 		"folke/tokyonight.nvim",
+		lazy = true,
 	},
 	{
 		"EdEnEast/nightfox.nvim",
-		config = function()
-			require("nightfox").setup({
-				options = {
-					transparent = true,
-				},
-			})
-			-- vim.cmd([[ colorscheme everforest ]])
-		end,
+		-- config = function()
+		-- 	require("nightfox").setup({
+		-- 		options = {
+		-- 			transparent = true,
+		-- 		},
+		-- 	})
+		-- 	-- vim.cmd([[ colorscheme everforest ]])
+		-- end,
+		lazy = true,
 	},
 	{
 		"rose-pine/neovim",
 		name = "rose-pine",
+		lazy = true,
 		-- config = function()
 		-- 	vim.cmd([[ colorscheme rose-pine ]])
 		-- end,
 	},
 	{
 		"craftzdog/solarized-osaka.nvim",
-		lazy = false,
+		lazy = true,
 		priority = 1000,
 		opts = {},
 		-- config = function()
@@ -58,6 +61,7 @@ require("lazy").setup({
 		name = "catppuccin",
 		priority = 1000,
 		event = "VimEnter",
+		lazy = true,
 		-- config = function()
 		--   vim.cmd(
 		--     [[colorscheme catppuccin-mocha " catppuccin-latte, catppuccin-frappe, catppuccin-macchiato, catppuccin-mocha]]
@@ -66,7 +70,7 @@ require("lazy").setup({
 	},
 	{
 		"neanias/everforest-nvim",
-		-- lazy = true,
+		lazy = true,
 		-- config = function()
 		-- 	require("plugin.colorschema")
 		-- end,

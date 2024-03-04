@@ -33,3 +33,7 @@ devicons
 keymaps
 VimEnter
 json
+init
+on
+config
+cjson

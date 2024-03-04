@@ -20,7 +20,6 @@ function string.join(list, delimiter)
 end
 
 local Menu = require("nui.menu")
-local event = require("nui.utils.autocmd").event
 
 local popup_options = {
 	-- relative = "buf",
@@ -83,7 +82,7 @@ local function readColorScheme()
 		--   TODO: isTransParent
 	end
 end
-local function openColorScheme()
+function OpenColorScheme()
 	local before_color = vim.api.nvim_exec2("colorscheme", { output = true }).output
 	local colors = vim.fn.getcompletion("", "color")
 	local items = {}
@@ -109,9 +108,10 @@ local function openColorScheme()
 	})
 	menu:mount()
 end
+
 -- vim.api.nvim_set_keymap("n", "<leader>cs", ":echo 123", {})
 vim.keymap.set("n", "<leader>cs", function()
-	openColorScheme()
+	OpenColorScheme()
 end, {})
 local ag = vim.api.nvim_create_augroup("ColorSchemeGroup", {})
 vim.api.nvim_create_autocmd("VimEnter", {

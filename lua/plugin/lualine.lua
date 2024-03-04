@@ -65,14 +65,24 @@ local lsp = {
 		end
 		local buf_ft = vim.bo.filetype
 		local buf_client_names = {}
+		local copilot_activite = false
 		-- add client
+
 		for _, client in pairs(buf_clients) do
 			if client.name ~= "null-ls" and client.name ~= "copilot" then
 				table.insert(buf_client_names, client.name)
 			end
+			if client.name == "copilot" then
+				table.insert(buf_client_names, client.name)
+				copilot_activite = true
+			end
 		end
 		local unique_client_names = table.concat(buf_client_names, ", ")
 		local language_servers = string.format("[%s]", unique_client_names)
+
+		if copilot_activite then
+			-- language_servers = language_servers .. "%#SLCopilot#" .. " " .. "&" .. "%*"
+		end
 		return language_servers
 	end,
 	color = { gui = "bold" },

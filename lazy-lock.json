@@ -63,4 +63,3 @@
   "vim-translator": { "branch": "master", "commit": "6f0639c6d471a3a90ac19db96e1e379c030f74e3" },
   "vim-visual-multi": { "branch": "master", "commit": "cff14071098de5279743b009c496303995fe4df9" },
   "which-key.nvim": { "branch": "main", "commit": "4433e5ec9a507e5097571ed55c02ea9658fb268a" }
-}

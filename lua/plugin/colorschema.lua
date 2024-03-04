@@ -1,3 +1,79 @@
+local tab = {
+	{
+		keys = { "everforest" },
+		config = function()
+			---@diagnostic disable-next-line: missing-fields
+			require("everforest").setup({
+				-- 0 | 1 | 2
+				transparent_background_level = 2,
+			})
+		end,
+	},
+	{
+		keys = {
+			"tokyonight-night",
+			"tokyonight-storm",
+			"tokyonight-day",
+			"tokyonight-moon",
+		},
+		config = function()
+			require("tokyonight").setup({
+				transparent = true,
+			})
+		end,
+	},
+	{
+		keys = { "catppuccin", "catppuccin-macchiato", "catppuccin-frappe", "catppuccin-mocha", "catppuccin-latte" },
+		config = function()
+			require("catppuccin").setup({
+				transparent_background = true,
+			})
+		end,
+	},
+	{
+		keys = {
+			"solarized-osaka",
+			"solarized-osaka-storm",
+			"solarized-osaka-day",
+			"solarized-osaka-night",
+			"solarized-osaka-moon",
+		},
+		config = function()
+			require("solarized-osaka").setup({
+				transparent = true,
+			})
+		end,
+	},
+	{
+		keys = { "rose-pine", "rose-pine-main", "rose-pine-moon", "rose-pine-dawn" },
+		config = function()
+			require("rose-pine").setup({
+				styles = {
+					transparency = true,
+				},
+			})
+		end,
+	},
+	{
+		keys = { "nightfox", "dayfox", "dawnfox", "duskfox", "nordfox", "terafox", "carbonfox" },
+		config = function()
+			require("nightfox").setup({
+				options = {
+					transparent = true,
+				},
+			})
+		end,
+	},
+}
+local colorTab = {}
+for _, value in ipairs(tab) do
+	local keys = value["keys"]
+	local config = value["config"]
+	for _, key in ipairs(keys) do
+		colorTab[key] = config
+	end
+end
+
 function string.split(str, delimiter)
 	local result = {}
 	local pattern = string.format("([^%s]+)", delimiter)
@@ -56,6 +132,7 @@ local function setColorscheme()
 	end
 	local line = colorscheme .. "," .. isTransParent
 	if colorscheme then
+		colorTab[colorscheme]()
 		vim.cmd.colorscheme(colorscheme)
 	end
 	file:write(line)
@@ -76,16 +153,18 @@ local function readColorScheme()
 	colorscheme = line[1]
 	file:close()
 	if colorscheme then
+		colorTab[colorscheme]()
 		vim.cmd.colorscheme(colorscheme)
 	end
-	if isTransParent == "true" then
-		--   TODO: isTransParent
-	end
+	-- if isTransParent == "true" then
+	-- 	--   TODO: isTransparent
+	-- end
 end
 function OpenColorScheme()
-	local before_color = vim.api.nvim_exec2("colorscheme", { output = true }).output
-	local colors = vim.fn.getcompletion("", "color")
+	-- local before_color = vim.api.nvim_exec2("colorscheme", { output = true }).output
+	-- local colors = vim.fn.getcompletion("", "color")
 	local items = {}
+	local colors = vim.tbl_keys(colorTab)
 	for _, c in pairs(colors) do
 		table.insert(items, 1, Menu.item(c))
 	end

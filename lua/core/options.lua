@@ -6,7 +6,6 @@ opt.fileencoding = "utf-8"
 opt.hlsearch = true
 opt.showtabline = 2
 opt.smartcase = true
--- opt.ignorecase = true
 opt.smartindent = true
 opt.swapfile = false
 opt.termguicolors = true
@@ -27,5 +26,7 @@ opt.numberwidth = 4
 opt.signcolumn = "yes"
 opt.scrolloff = 5
 opt.sidescrolloff = 5
-opt.spell = true
+opt.spell = false
 opt.showmode = false
+-- 配置搜索忽略大小写
+opt.ignorecase = true

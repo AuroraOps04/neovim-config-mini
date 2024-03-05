@@ -1,6 +1,6 @@
--- require("notify").setup({
--- 	background_colour = "#000000",
--- })
+require("notify").setup({
+	background_colour = "#000000",
+})
 require("noice").setup({
 	lsp = {
 		-- override markdown rendering so that **cmp** and other plugins use **Treesitter**
@@ -19,6 +19,6 @@ require("noice").setup({
 		lsp_doc_border = false, -- add a border to hover docs and signature help
 	},
 	messages = {
-		enabled = false,
+		enabled = true,
 	},
 })

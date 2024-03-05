@@ -15,31 +15,40 @@ end
 
 --   פּ ﯟ   some other good icons
 local kind_icons = {
-	Text = "",
-	Method = "m",
-	Function = "",
-	Constructor = "",
-	Field = "",
-	Variable = "",
-	Class = "",
-	Interface = "",
-	Module = "",
-	Property = "",
-	Unit = "",
-	Value = "",
-	Enum = "",
-	Keyword = "",
-	Snippet = "",
-	Color = "",
-	File = "",
-	Reference = "",
-	Folder = "",
-	EnumMember = "",
-	Constant = "",
-	Struct = "",
-	Event = "",
-	Operator = "",
-	TypeParameter = "",
+	Array = "",
+	Boolean = "",
+	Class = "",
+	Color = "",
+	Constant = "",
+	Constructor = "",
+	Enum = "",
+	EnumMember = "",
+	Event = "",
+	Field = "",
+	File = "",
+	Folder = "󰉋",
+	Function = "",
+	Interface = "",
+	Key = "",
+	Keyword = "",
+	Method = "",
+	Module = "",
+	Namespace = "",
+	Null = "󰟢",
+	Number = "",
+	Object = "",
+	Operator = "",
+	Package = "",
+	Property = "",
+	Reference = "",
+	Snippet = "",
+	String = "",
+	Struct = "",
+	Text = "",
+	TypeParameter = "",
+	Unit = "",
+	Value = "",
+	Variable = "",
 }
 -- find more here: https://www.nerdfonts.com/cheat-sheet
 
@@ -65,6 +74,10 @@ cmp.setup({
 		-- Set `select` to `false` to only confirm explicitly selected items.
 		["<CR>"] = cmp.mapping.confirm({ select = true }),
 		["<Tab>"] = cmp.mapping(function(fallback)
+			-- local res = vim.fn["copilot#Accept"]()
+			-- if res ~= "^I" then
+			-- 	-- 执行 copilot#Accept 函数返回的结果
+			-- 	vim.api.nvim_feedkeys(res, "i", false)
 			if cmp.visible() then
 				cmp.select_next_item()
 			elseif luasnip.expandable() then
@@ -94,6 +107,7 @@ cmp.setup({
 		}),
 	},
 	formatting = {
+		expandable_indicator = true,
 		fields = { "kind", "abbr", "menu" },
 		format = function(entry, vim_item)
 			-- Kind icons
@@ -125,7 +139,9 @@ cmp.setup({
 		documentation = cmp.config.window.bordered(),
 	},
 	experimental = {
+
 		ghost_text = false,
 		native_menu = false,
 	},
 })
+--

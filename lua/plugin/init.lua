@@ -191,11 +191,11 @@ require("lazy").setup({
 			"nvim-treesitter/nvim-treesitter",
 		},
 		config = function()
-			require("go").setup()
+			require("plugin.go")
 		end,
 		lazy = true,
-		-- event = { "CmdlineEnter" },
-		-- ft = { "go", "gomod" },
+		event = { "CmdlineEnter" },
+		ft = { "go", "gomod" },
 		build = ':lua require("go.install").update_all_sync()', -- if you need to install/update all binaries
 	},
 	{
